@@ -64,11 +64,11 @@ int main()
             DrawRectangle(axe_x, axe_y, axe_length, axe_length, RED); // posX, posY, width, height, color
 
             // move axe
-            // axe_y += direction;
-            // if (axe_y > height || axe_y < -100)
-            // { // down -> up -> down ...
-            //     direction = -direction;
-            // }
+            axe_y += direction;
+            if (axe_y > height || axe_y < -100)
+            { // down -> up -> down ...
+                direction = -direction;
+            }
 
             if (IsKeyDown(KEY_D) && circle_x < width)
             {
