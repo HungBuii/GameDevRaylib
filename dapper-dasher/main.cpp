@@ -41,7 +41,7 @@ int main()
     InitWindow(windowDimensions[0], windowDimensions[1], "Dapper Dasher");
 
     // acceleration due to gravity (acceleration = (pixel/second)/second = v/t )
-    const int gravity = 500;
+    const int gravity = 1000;
 
     // nebula variables
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
