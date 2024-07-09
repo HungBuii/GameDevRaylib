@@ -41,7 +41,7 @@ int main()
     InitWindow(windowDimensions[0], windowDimensions[1], "Dapper Dasher");
 
     // acceleration due to gravity (acceleration = (pixel/second)/second = v/t )
-    const int gravity = 1000;
+    const int gravity = 500;
 
     // nebula variables
     Texture2D nebula = LoadTexture("textures/12_nebula_spritesheet.png");
@@ -62,7 +62,7 @@ int main()
         nebulae[i].updateTime = 1.0 / 16.0;
     }
 
-    // finish line
+    // finish game line 
     float finishLine = nebulae[sizeOfNebulae - 1].pos.x;
 
     // nebula velocity (pixels/second)
@@ -194,31 +194,18 @@ int main()
         for (int i = 0; i < sizeOfNebulae; i++)
         {
             nebulae[i] = updateAnimData(nebulae[i], dT, 7);
-            // // update Nebula's animation frame
-            // if (nebulae[i].runningTime >= nebulae[i].updateTime)
-            // {
-            //     nebulae[i].runningTime = 0;
-            //     // update animation frame
-            //     if (nebulae[i].frame > 7)
-            //     {
-            //         nebulae[i].frame = 0;
-            //     }
-            //     nebulae[i].rec.x = nebulae[i].frame * nebulae[i].rec.width;
-            //     nebulae[i].frame++;
-            // }
         }
 
         //
-        
+
         for (AnimData nebula : nebulae)
         {
             float pad = 50;
             Rectangle nebRec{
                 nebula.pos.x + pad,
                 nebula.pos.y + pad,
-                nebula.rec.width - 2*pad,
-                nebula.rec.height - 2*pad
-            };
+                nebula.rec.width - 2 * pad,
+                nebula.rec.height - 2 * pad};
 
             Rectangle scarfyRec{
                 scarfyData.pos.x,
@@ -236,6 +223,11 @@ int main()
         if (collision)
         {
             // Lose the game
+            DrawText("Game Over!", windowDimensions[0] / 2 - 25, windowDimensions[1] / 2, 15, BLUE);
+        }
+        else if (finishLine <= scarfyData.pos.x)
+        {
+            DrawText("You Win!", windowDimensions[0] / 2 - 25, windowDimensions[1] / 2, 15, GREEN);
         }
         else
         {
